@@ -1,3 +1,5 @@
+import {startConfetti, stopConfetti, removeConfetti} from "./confetti.js"
+
 const playerScoreEl = document.querySelector("#playerScore");
 const playerChoiceEl = document.querySelector("#playerChoice");
 const computerScoreEl = document.querySelector("#computerScore");
@@ -61,7 +63,9 @@ function resetAll(){
   playerScoreEl.textContent = playerScore;
   computerScoreEl.textContent = computerScore;
   stopConfetti();
+  removeConfetti()
 }
+window.resetAll = resetAll
 
 function computerRandomChoice() {
   const computerRandomNumber = Math.random()
@@ -117,6 +121,7 @@ function updateScore(playerChoice) {
       playerScoreEl.textContent = playerScore;
     } else {
       stopConfetti();
+      removeConfetti()
       resultText.textContent = "You Lose!";
       computerScore++;
       computerScoreEl.textContent = computerScore;
@@ -158,3 +163,7 @@ function select(playerChoice) {
       // code block
   }
 }
+window.select = select
+
+//onload
+resetAll()
